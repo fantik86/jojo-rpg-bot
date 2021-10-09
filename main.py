@@ -8,7 +8,7 @@ bot = commands.Bot(command_prefix="$$")
 
 @bot.event
 async def on_ready():
-    print('Logged on as', bot.user)
+    print(f'Logged on as {bot.user}')
 
 @bot.command(aliases = ['eval', 'aeval', 'evaulate', 'выполнить', 'exec', 'execute'])
 async def __eval(ctx, *, content):
