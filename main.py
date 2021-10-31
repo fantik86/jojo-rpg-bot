@@ -24,6 +24,6 @@ async def __eval(ctx, *, content):
     if ctx.message.author.id in developers:
         await aeval.aeval(f"""{code}""", standart_args, {})
     else:
-        await ctx.send("Вы не разработчик")
+        await ctx.send("Вы не разработчик" )
 
 bot.run(token)
