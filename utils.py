@@ -1,5 +1,6 @@
 import disnake
 from disnake.ext import commands
+from main import developers
 # --------------------------
 channel_id_logs = 903703988225052762
 # --------------------------
@@ -62,6 +63,13 @@ class Utilits(commands.Cog):
             await channel.send(embed=disnake.Embed(title='Вызвана команда: "stats"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
         except Exception:
             pass
+    @commands.command()
+    async def say(self, ctx, arg):
+        if ctx.author.id in developers:
+            await ctx.message.delete()
+            await ctx.send(arg)
+        else:
+            await ctx.send("Вы не разработчик!")
 # ---------------------------
 def setup(bot):
     bot.add_cog(Utilits(bot))
