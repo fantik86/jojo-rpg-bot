@@ -6,7 +6,6 @@ import os
 import time
 import random
 import aeval
-from discord_webhook import DiscordWebhook
 # -------------------------------
 from disnake.ext import commands, tasks
 
