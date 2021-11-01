@@ -5,7 +5,6 @@ import pymongo
 import os
 import time
 import random
-import aeval
 # -------------------------------
 from disnake.ext import commands, tasks
 
