@@ -21,7 +21,7 @@ class Devs(commands.Cog):
             if collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0:
                 arrows_len = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["arrows"]
                 money_len = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["money"]
-                await ctx.send(embed=disnake.Embed(title="Инвентарь", description=f"Количество стрел: {arrows_len}\nБаланс: {money_len}$"))
+                await ctx.send(embed=disnake.Embed(title="Инвентарь", description=f"Количество стрел: {arrows_len}\nБаланс: {money_len}$", color=0xffff00))
             else:
                 await ctx.send("У вас нет стенда, используйте команду `get_stand` чтобы получить свой первый стенд!")
     @commands.command()
