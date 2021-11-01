@@ -37,7 +37,7 @@ class Devs(commands.Cog):
                 print("error cog:", eee)
         else:
             pass
-# -------------------------------
+# ------------------------------
 def setup(bot):
     bot.add_cog(Devs(bot))
     print("Получилось загрузить ког разработчиков!")
