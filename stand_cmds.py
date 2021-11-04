@@ -5,6 +5,9 @@ from disnake.ext import commands
 from main import collection_name_UserData
 from stand_list import stands_lst
 from stand_list import variations
+# ------------------------------- запускай
+embedshop=disnake.Embed(title="Магазин", description='1. Сброс стенда[В разработке] - 500$\n2. Стрела - 800$\n\nЧтобы приобрести вещь пропишите `stand_shop buy`', color=0xffff00)
+embedshop.set_footer(text="Пропишите stand_inv чтобы узнать баланс!")
 # -------------------------------
 class Standinfo(commands.Cog):
 
@@ -67,10 +70,47 @@ class Standinfo(commands.Cog):
             collection_name_UserData.update_one({"_id": f"{ctx.author.id}"}, {"$inc": {"money": get_num}})
         else: # а теперь?
             await ctx.send("Вам нужен хотя бы 1 стенд чтобы использовать эту команду!\nпропишите команду `stand_get` чтобы получить стенд.")
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.CommandOnCooldown):
-             await ctx.send(f'{ctx.author.mention} Подождите {round(error.retry_after)} секунд перед использованием команды!')
+    @commands.command()
+    @commands.cooldown(1, 4, commands.BucketType.user)
+    async def stand_inv(self, ctx):
+        try:
+            channel = self.bot.get_channel(903703988225052762)
+            await channel.send(embed=disnake.Embed(title='Вызвана команда: "stand_inv"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
+        except Exception:
+            pass 
+        if collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0:
+            arrows_len = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["arrows"] 
+            money_len = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["money"]
+            await ctx.send(embed=disnake.Embed(title=f"Инвентарь игрока {ctx.author}", description=f"**Количество стрел:** {arrows_len}\n**Баланс:** {money_len}$", color=0xffff00))
+        else:
+            await ctx.send("У вас нет стенда, используйте команду `get_stand` чтобы получить свой первый стенд!")
+    @commands.command()
+    @commands.cooldown(1, 4, commands.BucketType.user)
+    async def stand_shop(self, ctx, arg=None):
+        try:
+            channel = self.bot.get_channel(903703988225052762)
+            await channel.send(embed=disnake.Embed(title='Вызвана команда: "stand_shop"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
+        except Exception:
+            pass
+        if arg is None:
+            await ctx.send(embed=embedshop)
+        elif arg.lower() == 'buy':
+            await ctx.send("Отправьте **1** если хотите купить стрелу!")
+            player_choice_arrow = await self.bot.wait_for('message', check=lambda message: message.content == "1")
+            #player_choice_stand = await self.bot.wait_for('message', check=lambda message: message.content == "2")
+            msgg1 = player_choice_arrow.content
+            #msgg2 = player_choice_stand.content
+            if msgg1 == '1' and collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0:
+                if not collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["money"] - 800 < 0:
+                    await ctx.send("Стрела была успешно куплена и находится у вас, проверьте командой `stand_inv`.")
+                    collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$inc": {"money": -800}})
+                    collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$inc": {"arrows": 1}})
+                else:
+                    return await ctx.send("Недостаточно денег для покупки!")
+            else:
+                return await ctx.send("У вас нету инвентаря, чтобы получить его вам нужен стенд\nЧтобы получить стенд пропишите `stand_get`.")
+        else: # go
+            await ctx.send("Введено неверное значение.")
 # -------------------------------
 def setup(bot):
     bot.add_cog(Standinfo(bot)) 
