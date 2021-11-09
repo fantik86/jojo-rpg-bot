@@ -16,7 +16,7 @@ cooogs = {
     'user_info',
     'stand_cmds',
 }
-# -------------------------------
+# --------------------------------
 config = configparser.ConfigParser()
 config.read("config.ini")
 token = config.get("Config", "Token")
