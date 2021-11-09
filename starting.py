@@ -13,7 +13,7 @@ class Starterss(commands.Cog):
         print(f"Ник и тэг = {self.bot.user}")
         print(f"Мой айди = {self.bot.user.id}")
         print('------')
-        await self.bot.change_presence(status=disnake.Status.online, activity=disnake.Game("JOJO RPG"))
+        await self.bot.change_presence(status=disnake.Status.online, activity=disnake.Game("60%"))
 # -------------------------------
 def setup(bot):
     bot.add_cog(Starterss(bot))

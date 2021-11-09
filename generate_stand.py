@@ -31,11 +31,19 @@ class Stando(commands.Cog):
             time.sleep(2)
             stand = gett()
             await messageg.edit(embed=disnake.Embed(title="Получение стенда", description=f'Вы получили стенд **{stands_lst[stand]}**!', color=0xffff00))
-            collection_name_UserData.insert_one({"_id": f'{ctx.author.id}', "nickname": f'{ctx.author}', "stands": [], "arrows": 0, "money": 0})
+            collection_name_UserData.insert_one({"_id": f'{ctx.author.id}', "nickname": f'{ctx.author}', "stands": [], "arrows": 0, "money": 0, "explore_level": 1.00})
             collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"stands":f"{stand}"}})
         elif collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0 and len(collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["stands"]) == 3:
             await ctx.send("У вас и так достаточное количество стендов!")
-        elif collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0 and not len(collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["stands"]) == 3:
+        elif (
+            collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0 and 
+            len(collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["stands"]) != 3 and
+            collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["arrows"] <= 0):
+            await ctx.send("У вас нету стрелы чтобы получить новый стенд.")
+        elif (
+            collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0 and 
+            not len(collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["stands"]) == 3 and
+            collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["arrows"] > 0):
             messageg = await ctx.send(embed=disnake.Embed(title="Использование стрелы", description="Вы берёте стрелу в руку, и протыкаете ею себя, вы чувствуете странное чувство...", color=0xffff00))
             time.sleep(6)
             await messageg.edit(embed=disnake.Embed(title="Использование стрелы", description=f'Ваш стенд это...', color=0xffff00))
@@ -43,8 +51,9 @@ class Stando(commands.Cog):
             stand = gett()
             await messageg.edit(embed=disnake.Embed(title="Получение стенда", description=f'Вы получили стенд **{stands_lst[stand]}**!', color=0xffff00))
             collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"stands":f"{stand}"}})
+            collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$inc": {"arrows":-1}})
         else:
-            await ctx.send("Error")
+            await ctx.send("Неизвестная причина, сообщите разработчикам!")
             # elif {юзер в бд} и {кол-во стендов != 3} и {кол-во стрел == 0}:
             #   await ctx.send("У вас нет стрел чтобы получить новый стенд.")
 # -------------------------------  

@@ -5,6 +5,7 @@ from disnake.ext import commands
 from main import collection_name_UserData
 from stand_list import stands_lst
 from stand_list import variations
+from stand_list import explore_levels
 # ------------------------------- запускай
 embedshop=disnake.Embed(title="Магазин", description='1. Сброс стенда[В разработке] - 500$\n2. Стрела - 800$\n\nЧтобы приобрести вещь пропишите `stand_shop buy`', color=0xffff00)
 embedshop.set_footer(text="Пропишите stand_inv чтобы узнать баланс!")
@@ -49,7 +50,7 @@ class Standinfo(commands.Cog):
             lst = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["stands"]
             await ctx.send(embed=disnake.Embed(title="Список стендов", description=f"\n".join([stands_lst[i] for i in lst]), color=0xffff00))
         else:
-            return ctx.send("Вам нужно иметь хотя бы 1 стенд, используйте команду `get_stand`!")
+            await ctx.send("Вам нужно иметь хотя бы 1 стенд, используйте команду `get_stand`!")
 
     @commands.command()
     @commands.cooldown(1, 3600, commands.BucketType.user)
@@ -70,7 +71,7 @@ class Standinfo(commands.Cog):
             collection_name_UserData.update_one({"_id": f"{ctx.author.id}"}, {"$inc": {"money": get_num}})
         else: # а теперь?
             await ctx.send("Вам нужен хотя бы 1 стенд чтобы использовать эту команду!\nпропишите команду `stand_get` чтобы получить стенд.")
-    @commands.command()
+    @commands.command(aliases=["stand_inventory"])
     @commands.cooldown(1, 4, commands.BucketType.user)
     async def stand_inv(self, ctx):
         try:
