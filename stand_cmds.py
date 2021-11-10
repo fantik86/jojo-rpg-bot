@@ -6,9 +6,10 @@ from main import collection_name_UserData
 from stand_list import stands_lst
 from stand_list import variations
 from stand_list import explore_levels
-# ------------------------------- запускай
+# -------------------------------
 embedshop=disnake.Embed(title="Магазин", description='1. Сброс стенда[В разработке] - 500$\n2. Стрела - 800$\n\nЧтобы приобрести вещь пропишите `stand_shop buy`', color=0xffff00)
 embedshop.set_footer(text="Пропишите stand_inv чтобы узнать баланс!")
+embeds=disnake.Embed(title="Список стендов", description="У вас нету ни одного стенда!", color=0xffff00)
 # -------------------------------
 class Standinfo(commands.Cog):
 
@@ -40,6 +41,7 @@ class Standinfo(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 4, commands.BucketType.user)
     async def stand_list(self, ctx):
+        embeds.set_footer(text=f"Чтобы получить стенд, напишите $stand_get", icon_url=f"{ctx.message.author.avatar}")
         cnt = 0
         try:
             channel = self.bot.get_channel(903703988225052762)
@@ -48,7 +50,10 @@ class Standinfo(commands.Cog):
             pass
         if collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0:
             lst = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["stands"]
-            await ctx.send(embed=disnake.Embed(title="Список стендов", description=f"\n".join([stands_lst[i] for i in lst]), color=0xffff00))
+            if len(lst) != 0:
+                await ctx.send(embed=disnake.Embed(title="Список стендов", description=f"\n".join([stands_lst[i] for i in lst]), color=0xffff00))
+            else:
+                return await ctx.send(embed=embeds)
         else:
             await ctx.send("Вам нужно иметь хотя бы 1 стенд, используйте команду `get_stand`!")
 

@@ -42,7 +42,32 @@ class Devs(commands.Cog):
 
             else:
                 await ctx.send("Чтобы использовать данную команду, вы должны иметь хотя бы 1 стенд!\nДля этого пропишите команду `get_stand`.")
-                
+
+    @commands.command()
+    @commands.cooldown(1, 4, commands.BucketType.user) 
+    async def test_cmd3(self, ctx, stndt: int):
+        try:
+            channel = self.bot.get_channel(channel_id_logs)
+            await channel.send(embed=disnake.Embed(title='Вызвана команда: "stand_reset"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
+        except Exception:
+            pass
+        if collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0:
+            if stndt > 3 or stndt < 1:
+                return await ctx.send("Вы не указали верный номер стенда!")
+            else:
+                stand_get = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["stands"]
+                try:
+                    del stand_get[stndt-1]
+                    collection_name_UserData.update_one({"_id": f"{ctx.author.id}"}, {"$set": {"stands": stand_get}})
+                    await ctx.send("Ваш стенд успешно был сброшен.")
+                except IndexError:
+                    if stndt == 2:
+                        await ctx.send("Вы можете указать только 1 номер стенда!")
+                    elif stndt == 3:
+                        await ctx.send("Вы можете указать только 1 или 2 номер стенда!")
+        else:
+            return await ctx.send("Чтобы использовать данную команду вам нужен хотя бы 1 стенд\nЧтобы получить его используйте `stand_get`")
+
     @commands.command(aliases=["reload", "rel"])
     async def reload_cog(self, ctx, extension):
         if ctx.author.id in developers:
@@ -54,13 +79,13 @@ class Devs(commands.Cog):
         else:
             pass
     @commands.command()
-    async def update_db(self, ctx, arg1: disnake.Member, arg2, arg3): # бля хз ща посмотрю
+    async def update_db(self, ctx, arg1: disnake.Member, arg2, arg3):
         if ctx.author.id in developers:
             try:
                 collection_name_UserData.update_one({"_id": f'{arg1.id}'}, {"$set": {arg2:int(arg3)}})
                 await ctx.send("Success!")
             except Exception as rr:
-                print(rr) # что за ошибка
+                print(rr)
     @commands.command()
     async def delete_db(self, ctx, arg: disnake.Member):
         if ctx.author.id in developers:

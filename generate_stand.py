@@ -54,8 +54,6 @@ class Stando(commands.Cog):
             collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$inc": {"arrows":-1}})
         else:
             await ctx.send("Неизвестная причина, сообщите разработчикам!")
-            # elif {юзер в бд} и {кол-во стендов != 3} и {кол-во стрел == 0}:
-            #   await ctx.send("У вас нет стрел чтобы получить новый стенд.")
 # -------------------------------  
 def setup(bot):
     bot.add_cog(Stando(bot))
