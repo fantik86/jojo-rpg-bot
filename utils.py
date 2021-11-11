@@ -13,7 +13,7 @@ embedinformation.set_thumbnail(url="https://media.discordapp.net/attachments/896
 embedinformation.add_field(name="Бот написан на:", value="Python3", inline=True)
 embedinformation.add_field(name="Версия бота:", value="0.65 Alpha", inline=True)
 embedinformation.add_field(name='Разработчики:', value='ViZus#9667\nФантик#1111', inline=True)
-embedinformation.add_field(name='Библиотека бота:', value='disnake.py', inline=False)
+embedinformation.add_field(name='Библиотека бота:', value='disnake', inline=False)
 # ------------------------------- 
 class Utilits(commands.Cog):
 

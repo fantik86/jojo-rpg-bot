@@ -88,6 +88,9 @@ class Devs(commands.Cog):
                 elif arg0 == "2":
                     collection_name_UserData.update_one({"_id": f'{arg1.id}'}, {"$set": {arg2:str(arg3)}})
                     await ctx.send("Success!")
+                elif arg0 == "3":
+                    collection_name_UserData.update_one({"_id": f'{arg1.id}'}, {"$push": {arg2:str(arg3)}})
+                    await ctx.send("Success!")
             except Exception as rr:
                 print(rr)
     @commands.command()
