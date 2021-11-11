@@ -4,7 +4,8 @@ import random as rnd
 import time
 from stand_list import stands_lst
 from main import collection_name_UserData
-# -----------------------------
+from main import developers
+# -------------------------------
 def gett():
     numb = [str(rnd.randint(1, 102)) for _ in range(50)]
     numb = rnd.choice(numb)
@@ -31,8 +32,13 @@ class Stando(commands.Cog):
             time.sleep(2)
             stand = gett()
             await messageg.edit(embed=disnake.Embed(title="Получение стенда", description=f'Вы получили стенд **{stands_lst[stand]}**!', color=0xffff00))
-            collection_name_UserData.insert_one({"_id": f'{ctx.author.id}', "nickname": f'{ctx.author}', "stands": [], "arrows": 0, "money": 0, "explore_level": 1.00})
-            collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"stands":f"{stand}"}})
+            collection_name_UserData.insert_one({"_id": f'{ctx.author.id}', "nickname": f'{ctx.author}', "stands": [], "arrows": 0, "money": 0, "explore_level": 1.00, "achievements": []})
+            try:
+                collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"stands":f"{stand}"}})
+            except Exception as rtt:
+                print(rtt)
+            if str(stand) == "92":
+                collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"achievements":"❤️"}})
         elif collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) != 0 and len(collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["stands"]) == 3:
             await ctx.send("У вас и так достаточное количество стендов!")
         elif (
@@ -52,6 +58,8 @@ class Stando(commands.Cog):
             await messageg.edit(embed=disnake.Embed(title="Получение стенда", description=f'Вы получили стенд **{stands_lst[stand]}**!', color=0xffff00))
             collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"stands":f"{stand}"}})
             collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$inc": {"arrows":-1}})
+            if (str(stand) == "92") and (not "❤️" in collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["achievements"]):
+                collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"achievements":"❤️"}})
         else:
             await ctx.send("Неизвестная причина, сообщите разработчикам!")
 # -------------------------------  

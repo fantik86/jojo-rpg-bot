@@ -79,11 +79,15 @@ class Devs(commands.Cog):
         else:
             pass
     @commands.command()
-    async def update_db(self, ctx, arg1: disnake.Member, arg2, arg3):
+    async def update_db(self, ctx, arg0, arg1: disnake.Member, arg2, arg3):
         if ctx.author.id in developers:
             try:
-                collection_name_UserData.update_one({"_id": f'{arg1.id}'}, {"$set": {arg2:int(arg3)}})
-                await ctx.send("Success!")
+                if arg0 == "1":
+                    collection_name_UserData.update_one({"_id": f'{arg1.id}'}, {"$set": {arg2:int(arg3)}})
+                    await ctx.send("Success!")
+                elif arg0 == "2":
+                    collection_name_UserData.update_one({"_id": f'{arg1.id}'}, {"$set": {arg2:str(arg3)}})
+                    await ctx.send("Success!")
             except Exception as rr:
                 print(rr)
     @commands.command()
