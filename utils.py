@@ -13,7 +13,7 @@ embedinformation.set_thumbnail(url="https://media.discordapp.net/attachments/896
 embedinformation.add_field(name="Бот написан на:", value="Python3", inline=True)
 embedinformation.add_field(name="Версия бота:", value="0.65 Alpha", inline=True)
 embedinformation.add_field(name='Разработчики:', value='ViZus#9667\nФантик#1111', inline=True)
-embedinformation.add_field(name='Библиотека бота:', value='disnake', inline=False)
+embedinformation.add_field(name='Библиотека бота:', value='disnake', inline=True)
 # ------------------------------- 
 class Utilits(commands.Cog):
 
@@ -48,7 +48,7 @@ class Utilits(commands.Cog):
         elif arg == "utilits":
             await ctx.send(embed=disnake.Embed(title="Команды утилиты", description="`ping` - Проверить отклик бота\n`stats` - Проверить статистику бота\n`information` - Информация о боте", color=0xFFFF00))
         elif arg == "other":
-             await ctx.send(embed=disnake.Embed(title="Другие команды", description="`user_info` - узнать информацию о пользователе", color=0xFFFF00))
+             await ctx.send(embed=disnake.Embed(title="Другие команды", description="`user_info` - узнать информацию о пользователе\n`one_zero_one_three` - ???\n`beta_get` - Получение стрел, дисков и стрел для теста бота", color=0xFFFF00))
         try:
             channel = self.bot.get_channel(channel_id_logs)
             await channel.send(embed=disnake.Embed(title='Вызвана команда: "help"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
@@ -66,13 +66,6 @@ class Utilits(commands.Cog):
             await channel.send(embed=disnake.Embed(title='Вызвана команда: "stats"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
         except Exception:
             pass
-    @commands.command()
-    async def say(self, ctx, arg):
-        if ctx.author.id in developers:
-            await ctx.message.delete()
-            await ctx.send(arg)
-        else:
-            await ctx.send("Вы не разработчик!")
 # ---------------------------
 def setup(bot):
     bot.add_cog(Utilits(bot))

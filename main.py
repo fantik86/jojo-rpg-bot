@@ -16,6 +16,7 @@ cooogs = {
     'user_info',
     'stand_cmds',
     'events',
+    'other'
 }
 # -------------------------------
 config = configparser.ConfigParser()

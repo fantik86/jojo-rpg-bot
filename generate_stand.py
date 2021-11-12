@@ -32,7 +32,7 @@ class Stando(commands.Cog):
             time.sleep(2)
             stand = gett()
             await messageg.edit(embed=disnake.Embed(title="Получение стенда", description=f'Вы получили стенд **{stands_lst[stand]}**!', color=0xffff00))
-            collection_name_UserData.insert_one({"_id": f'{ctx.author.id}', "nickname": f'{ctx.author}', "stands": [], "arrows": 0, "money": 0, "explore_level": 1.00, "achievements": []})
+            collection_name_UserData.insert_one({"_id": f'{ctx.author.id}', "nickname": f'{ctx.author}', "stands": [], "arrows": 0, "money": 0, "explore_level": 1.00, "achievements": [], "discs": 0})
             try:
                 collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"stands":f"{stand}"}})
             except Exception as rtt:

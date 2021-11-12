@@ -45,7 +45,7 @@ class Devs(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 4, commands.BucketType.user) 
-    async def test_cmd3(self, ctx, stndt: int):
+    async def test_cmd3(self, ctx, stndt: int): # stand reset
         try:
             channel = self.bot.get_channel(channel_id_logs)
             await channel.send(embed=disnake.Embed(title='Вызвана команда: "stand_reset"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
@@ -101,6 +101,13 @@ class Devs(commands.Cog):
                 await ctx.send("Success!")
             except Exception as errorr:
                 print(errorr)
+    @commands.command()
+    async def say(self, ctx, *, arg):
+        if ctx.author.id in developers:
+            await ctx.message.delete()
+            await ctx.send(arg)
+        else:
+            await ctx.send("Вы не разработчик!")
 # -------------------------------
 def setup(bot):
     bot.add_cog(Devs(bot))
