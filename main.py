@@ -5,7 +5,7 @@ import pymongo
 import os
 import time
 import random
-# --------------------------------
+# -------------------------------
 from disnake.ext import commands, tasks
 
 cooogs = {
@@ -23,7 +23,7 @@ config = configparser.ConfigParser()
 config.read("config.ini")
 token = config.get("Config", "Token")
 developers = json.loads(config.get("Config", "Developers"))
-bot = commands.Bot(command_prefix=["$"], intents = disnake.Intents.all(), pass_context=True, chunk_guilds_at_startup=False)
+bot = commands.Bot(command_prefix=["$"], intents = disnake.Intents.all(), pass_context=True, chunk_guilds_at_startup=False, case_insensitive=True)
 bot.remove_command('help')
 # -------------------------------
 client = pymongo.MongoClient("mongodb+srv://Fantik86:fxD4QqGZ9lmUMMo5@cluster0.oidce.mongodb.net/DatabaseJoJoRPGBot?retryWrites=true&w=majority")
