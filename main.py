@@ -5,7 +5,7 @@ import pymongo
 import os
 import time
 import random
-# -------------------------------
+# --------------------------------
 from disnake.ext import commands, tasks
 
 cooogs = {
