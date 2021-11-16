@@ -27,7 +27,7 @@ class Oother(commands.Cog):
             collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$set": {"discs": 999999}})
             return await ctx.send("Бета тестер, проверьте свой инвентарь через `stand_inv`!\nудачного тестирования бота.")
         else:
-            return await ctx.send("Чтобы использовать команду сначало получите стенд через `stand_get`!")
+            return await ctx.send("Чтобы использовать эту команду, сначала получите стенд через `stand_get`!")
 # ---------------------------------
 def setup(bot):
     bot.add_cog(Oother(bot))
