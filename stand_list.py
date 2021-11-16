@@ -1,4 +1,5 @@
 stands_lst = {
+    #-------------------------Стенды 3 части ниже-------------------------#
     "1": "Hamon",
     "2": "Star Platinum",
     "3": "Magician's Red",
@@ -33,6 +34,7 @@ stands_lst = {
     "32": "Atum",
     "33": "Tenore Sax",
     "34": "Cream",
+    #-------------------------Стенды 4 части ниже-------------------------#
     "35": "The Hand",
     "36": "Echoes ACT 1",
     "37": "Crazy Diamond",
@@ -52,6 +54,7 @@ stands_lst = {
     "51": "Highway Star",
     "52": "Enigma",
     "53": "Cheap Trick",
+    #-------------------------Стенды 5 части ниже-------------------------#
     "54": "Gold Experience",
     "55": "Sticky Fingers",
     "56": "Moody Blues",
@@ -77,6 +80,7 @@ stands_lst = {
     "76": "Green Day",
     "77": "Oasis",
     "78": "Rolling Stones",
+    #-------------------------Стенды 6 части ниже-------------------------#
     "79": "Stone Free",
     "80": "Kiss",
     "81": "Burning Down the House",
@@ -99,19 +103,34 @@ stands_lst = {
     "98": "Bohemian Rhapsody",
     "99": "Sky High",
     "100": "Under World",
-    "101": "Tusk 1",
+    #-------------------------Стенды 7 части ниже-------------------------#
+    "101": "Tusk ACT 1",
     "102": "Ball Breaker",
-    "103": "Achtung Baby",
-    "104": "Holly's Stand",
-    "105": "Joestar's Stand",
-    "106": "Atom Heart Father",
-    "107": "Super Fly",
-    "108": "Gold Experience: Over Heaven Requiem",
-    "109": "Made in Heaven",
-    "110": "The World: Over Heaven"
+    "103": "Oh! Lonesome Me",
+    "104": "Scary Monsters",
+    "105": "Cream Starter",
+    "106": "Ticket to Ride",
+    "107": "Dirty Deeds Done Dirt Cheap",
+    "108": "In a Silent Way",
+    "109": "Boku no Rhythm wo Kiitekure",
+    "110": "Wired",
+    "111": "Mandom",
+    "112": "Catch the Rainbow",
+    "113": "Tatoo You!",
+    "114": "Tubular Bells",
+    "115": "Civil War",
+    "116": "The World: High Voltage",
+    "117": "",
+    "118": "",
+    "119": "Holly's Stand",
+    "120": "Joestar's Stand",
+    "121": "Super Fly",
+    "122": "Gold Experience: Over Heaven Requiem",
+    "123": "Made in Heaven",
+    "124": "The World: Over Heaven"
 }
 
-# Нумерация стендов
+# Запись: Bohemian Rhapsody фото пропустил, Highway to Hell фото пропустил
 
 # Стенды которые можно выиграть в розыгрышах / выбить при удачной победе с шансом (0.5) [Может быть шанс будет меньше]
 
@@ -127,9 +146,10 @@ upgrade_stands_lst = {
     "9": "Silver Chariot Requiem",
     "10": "Star Platinum: Stone Ocean",
     "11": "C-Moon",
-    "12": "Tusk 2",
-    "13": "Tusk 3",
-    "14": "Tusk 4",
+    "12": "Tusk ACT 2",
+    "13": "Tusk ACT 3",
+    "14": "Tusk ACT 4",
+    "15": "D4C: Love Train",
 }
 
 # Стенды которые можно будет получить после того как их прокачаешь
