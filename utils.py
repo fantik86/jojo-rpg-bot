@@ -48,7 +48,7 @@ class Utilits(commands.Cog):
         elif arg == "utilits":
             await ctx.send(embed=disnake.Embed(title="Команды утилиты", description="`ping` - Проверить отклик бота\n`stats` - Проверить статистику бота\n`information` - Информация о боте", color=0xFFFF00))
         elif arg == "other":
-             await ctx.send(embed=disnake.Embed(title="Другие команды", description="`user_info` - узнать информацию о пользователе\n`one_zero_one_three` - ???\n`beta_get` - Получение стрел, дисков и стрел для теста бота", color=0xFFFF00))
+             await ctx.send(embed=disnake.Embed(title="Другие команды", description="`user_info` - узнать информацию о пользователе\n`one_zero_one_three` - ???\n`beta_get` - Получение стрел, дисков и денег для теста бота", color=0xFFFF00))
         try:
             channel = self.bot.get_channel(channel_id_logs)
             await channel.send(embed=disnake.Embed(title='Вызвана команда: "help"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
