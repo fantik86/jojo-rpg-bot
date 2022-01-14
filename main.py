@@ -47,9 +47,9 @@ async def on_guild_join(guild):
         channel = bot.get_channel(903703988225052762)
         joinguild = bot.get_guild(guild)
         await channel.send(embed=disnake.Embed(title='Бот был приглашён на сервер', description=f"`ID Сервера`: {joinguild.id}\n`Ник Автора`: {joinguild.owner_id}\n`Количество юзеров`: {joinguild.member_count}\n`Название Сервера`: {ctx.guild}"))
-    except Exception as rrr: # пробуй
+    except Exception as rrr:
         print("Send error:", rrr)
-    for chan in guild.text_channels: # так это ссылка на сервер чтобы текст отправляла
+    for chan in guild.text_channels:
         if chan.permissions_for(guild.me).send_messages:
             return await chan.send(embed=disnake.Embed(title="Я Джорно Джованна, и у меня есть мечта!", description="Бон-джорно! Меня зовут Джорно Джованна, и у меня есть мечта.\nСпасибо что вы пригласили меня на сервер, я постараюсь представить себя в лучшей красе!\nЯ являюсь RPG ботом, где вы сможете получить свой стенд, развиваться и бороться с другими.\n\nКоманды - `$help`\nМой префикс - **$**", color=0xffff00))
 @bot.event
