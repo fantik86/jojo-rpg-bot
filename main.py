@@ -53,6 +53,9 @@ async def on_guild_join(guild):
         if chan.permissions_for(guild.me).send_messages:
             await chan.send(embed=disnake.Embed(title="Я Джорно Джованна, и у меня есть мечта!", description="Бон-джорно! Меня зовут Джорно Джованна, и у меня есть мечта.\nСпасибо что вы пригласили меня на сервер, я постараюсь представить себя во всей красе!\nЯ являюсь RPG ботом, где вы сможете получить свой стенд, развиваться и бороться с другими.\n\nКоманды - `$help`\nМой префикс - **$**", color=0xffff00))
             break
+    except Exception as e:
+      t = bot.get_channel(896109675873984543)
+      await t.send(e)
 @bot.event
 async def on_guild_leave(guild):
     try:
