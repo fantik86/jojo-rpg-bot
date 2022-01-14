@@ -46,7 +46,7 @@ async def on_guild_join(guild):
     try:
         channel = bot.get_channel(903701604014891040)
         joinguild = bot.get_guild(guild)
-        await channel.send(embed=disnake.Embed(title='Бот был приглашён на сервер', description=f"`ID Сервера`: {guild}\n`Ник Автора`: {joinguild.owner}`Название Сервера`: {guild}"))
+        await channel.send(embed=disnake.Embed(title='Бот был приглашён на сервер', description=f"`ID Сервера`: {guild}\n`Ник Автора`: {joinguild}`Название Сервера`: {guild}"))
     except Exception as rrr:
         t = bot.get_channel(896109675873984543)
         await t.send(e)
