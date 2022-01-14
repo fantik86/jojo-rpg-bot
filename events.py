@@ -19,7 +19,6 @@ class Events(commands.Cog):
     async def on_message(self, message):
         if message.content == f"<@!{896108733275439165}>":
             await message.channel.send(embed=disnake.Embed(title="Бонджорно!", description="Я тут, если что, вызывай меня через *$*.", color=0xFFFF00))
-        await self.bot.process_commands(message)
         
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
