@@ -46,7 +46,7 @@ async def on_guild_join(guild):
     try:
         channel = bot.get_channel(903701604014891040)
         joinguild = bot.get_guild(guild)
-        await channel.send(embed=disnake.Embed(title='Бот был приглашён на сервер', description=f"`ID Сервера`: {joinguild.id}\n`Ник Автора`: {joinguild.owner_id}\n`Количество юзеров`: {joinguild.member_count}\n`Название Сервера`: {ctx.guild}"))
+        await channel.send(embed=disnake.Embed(title='Бот был приглашён на сервер', description=f"`ID Сервера`: {joinguild.id}\n`Ник Автора`: {joinguild.owner.id}\n`Количество юзеров`: {joinguild.member.count}\n`Название Сервера`: {guild}"))
     except Exception as rrr:
         print("Send error:", rrr)
     for chan in guild.text_channels:
@@ -58,7 +58,7 @@ async def on_guild_leave(guild):
     try:
         channel = bot.get_channel(903701604014891040)
         joinguild = bot.get_guild(guild)
-        await channel.send(embed=disnake.Embed(title='Бот был удалён с сервера', description=f"`ID Сервера`: {joinguild.id}\n`Ник Автора`: {joinguild.owner_id}\n`Количество юзеров`: {joinguild.member_count}\n`Название Сервера`: {ctx.guild}"))
+        await channel.send(embed=disnake.Embed(title='Бот был удалён с сервера', description=f"`ID Сервера`: {joinguild.id}\n`Ник Автора`: {joinguild.owner.id}\n`Количество юзеров`: {joinguild.member.count}\n`Название Сервера`: {guild}"))
     except Exception as rrrr:
         print("Send error:", rrrr)
     return
