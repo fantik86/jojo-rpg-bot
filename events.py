@@ -34,7 +34,7 @@ class Events(commands.Cog):
                 await chan.send(embed=disnake.Embed(title="Я Джорно Джованна, и у меня есть мечта!", description="Бон-джорно! Меня зовут Джорно Джованна, и у меня есть мечта.\nСпасибо что вы пригласили меня на сервер, я постараюсь представить себя во всей красе!\nЯ являюсь RPG ботом, где вы сможете получить свой стенд, развиваться и бороться с другими.\n\nКоманды - `$help`\nМой префикс - **$**", color=0xffff00))
                 break
     @commands.Cog.listener()
-    async def on_guild_leave(self, guild):
+    async def on_guild_remove(self, guild):
         try:
             channel = self.bot.get_channel(903701604014891040)
             joinguild = self.bot.get_guild(guild)
