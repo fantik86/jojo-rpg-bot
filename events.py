@@ -38,7 +38,7 @@ class Events(commands.Cog):
         try:
             channel = self.bot.get_channel(903701604014891040)
             joinguild = self.bot.get_guild(guild.id)
-            await channel.send(embed=disnake.Embed(title='Бот был удалён с сервера', description=f"`ID Сервера`: {joinguild.id}\n`Ник Автора`: {None}\n`Количество юзеров`: {0}\n`Название Сервера`: {joinguild}"))
+            await channel.send(embed=disnake.Embed(title='Бот был удалён с сервера', description=f"`ID Сервера`: {joinguild.id}\n`Ник Автора`: {None}\n`Количество юзеров`: {None}\n`Название Сервера`: {joinguild}"))
         except Exception as rrrr:
             print("Send error:", rrrr)
         return
