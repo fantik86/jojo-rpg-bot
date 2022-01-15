@@ -21,10 +21,10 @@ class Events(commands.Cog):
             await message.channel.send(embed=disnake.Embed(title="Бонджорно!", description="Я тут, если что, вызывай меня через *$*.", color=0xFFFF00))
         
     @commands.Cog.listener()
-    async def on_guild_join(self, guild):
+    async def on_guild_join(self, ctx):
         try:
             channel = self.bot.get_channel(903701604014891040)
-            joinguild = self.bot.get_guild(self.guild.id)
+            joinguild = self.bot.get_guild(ctx.guild.id)
             await channel.send(embed=disnake.Embed(title='Бот был приглашён на сервер', description=f"`ID Сервера`: {None}\n`Ник Автора`: {None}\n`Название Сервера`: {guild}"))
         except Exception as rrr:
             t = self.bot.get_channel(896109675873984543)
@@ -34,11 +34,11 @@ class Events(commands.Cog):
                 await chan.send(embed=disnake.Embed(title="Я Джорно Джованна, и у меня есть мечта!", description="Бон-джорно! Меня зовут Джорно Джованна, и у меня есть мечта.\nСпасибо что вы пригласили меня на сервер, я постараюсь представить себя во всей красе!\nЯ являюсь RPG ботом, где вы сможете получить свой стенд, развиваться и бороться с другими.\n\nКоманды - `$help`\nМой префикс - **$**", color=0xffff00))
                 break
     @commands.Cog.listener()
-    async def on_guild_remove(self, guild):
+    async def on_guild_remove(self, ctx):
         try:
             channel = self.bot.get_channel(903701604014891040)
-            joinguild = self.bot.get_guild(self.guild.id)
-            await channel.send(embed=disnake.Embed(title='Бот был удалён с сервера', description=f"`ID Сервера`: {None}\n`Ник Автора`: {None}\n`Количество юзеров`: {joinguild.member_count}\n`Название Сервера`: {guild}"))
+            joinguild = self.bot.get_guild(ctx.guild.id)
+            await channel.send(embed=disnake.Embed(title='Бот был удалён с сервера', description=f"`ID Сервера`: {None}\n`Ник Автора`: {None}\n`Количество юзеров`: {joinguild.member_count}\n`Название Сервера`: {joinguild}"))
         except Exception as rrrr:
             print("Send error:", rrrr)
         return
