@@ -45,7 +45,7 @@ class Utilits(commands.Cog):
             await ctx.send(embed=embedhelp)
         elif arg == "main":
             await ctx.send(embed=disnake.Embed(title="Главные команды", description="`stand_get` - Вонзить стрелу в себя\n`stand_info` - Информация о стенде\n`stand_list` - Информация о ваших стендах\n`stand_reset <Номер стенда>` - Сбросить стенд\n`stand_adventure` - Приключения для заработка\n`stand_inv` - Инвентарь\n`stand_shop` - Магазин", color=0xffff00))
-        elif arg == "utilits":
+        elif arg in ["utilits", "utils"]:
             await ctx.send(embed=disnake.Embed(title="Команды утилиты", description="`ping` - Проверить отклик бота\n`stats` - Проверить статистику бота\n`information` - Информация о боте", color=0xFFFF00))
         elif arg == "other":
              await ctx.send(embed=disnake.Embed(title="Другие команды", description="`user_info` - узнать информацию о пользователе\n`one_zero_one_three` - ???\n`beta_get` - Получение стрел, дисков и денег для теста бота", color=0xFFFF00))
