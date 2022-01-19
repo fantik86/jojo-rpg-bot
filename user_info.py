@@ -2,7 +2,7 @@ import disnake
 import datetime
 from disnake.ext import commands
 from main import collection_name_UserData
-from stand_list import stands_lst
+from stand_list import stands_lst, explore_levels
 from main import developers
 # -------------------------------
 date_format = "%a, %b %d, %Y @ %I:%M %p" 
@@ -63,6 +63,7 @@ class Userinfoo(commands.Cog):
                     print(r)
                 get_ac1 = collection_name_UserData.find_one({"_id": f"{arg.id}"})["achievements"]
                 embed3.add_field(name="Достижения:", value=("".join(get_ac1) if len(get_ac1) != 0 else "Нету"))
+                embed3.add_field(name="На локации:", value=f"{explore_levels[collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["explore_level"]]}")
                 await ctx.send(embed=embed3)
             except Exception as r:
                 print(r)
@@ -75,6 +76,7 @@ class Userinfoo(commands.Cog):
                     print(r)
                 get_ac1 = collection_name_UserData.find_one({"_id": f"{arg.id}"})["achievements"]
                 embed3.add_field(name="Достижения:", value=("".join(get_ac1) if len(get_ac1) != 0 else "Нету"))
+                embed3.add_field(name="На локации:", value=f"{explore_levels[collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["explore_level"]]}")
                 await ctx.send(embed=embed3)
             except Exception as r:
                 print(r)
