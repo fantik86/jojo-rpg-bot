@@ -21,7 +21,7 @@ cooogs = {
     'other'
 }
 async def get_prefix(bot, message):
-    return prefixes.get(message.guild_id)
+    return prefixes.get(message.guild.id)
 # -------------------------------
 config = configparser.ConfigParser()
 config.read("config.ini")
