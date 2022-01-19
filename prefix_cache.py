@@ -7,3 +7,4 @@ class GuildsPrefixes:
         self.prefixes[guild_id] = new_prefix
     def get(self, guild_id):
         return self.prefixes.get("$")
+prefixes = GuildsPrefixes(cached)
