@@ -1,10 +1,10 @@
 import disnake
 from disnake.ext import commands
 import random as rnd
-import time
 from stand_list import stands_lst
 from main import collection_name_UserData
 from main import developers
+import asyncio as time
 # -------------------------------
 def gett():
     numb = [str(rnd.randint(1, 102)) for _ in range(50)]
