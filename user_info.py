@@ -66,7 +66,7 @@ class Userinfoo(commands.Cog):
                 get_ac1 = collection_name_UserData.find_one({"_id": f"{arg.id}"})["achievements"]
                 embed3.add_field(name="Достижения:", value=("".join(get_ac1) if len(get_ac1) != 0 else "Нету"))
                 levels = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["explore_level"]
-                embed3.add_field(name="На локации:", value=f"{explore_levels[levels]")
+                embed3.add_field(name="На локации:", value=f"{explore_levels[levels]}")
                 await ctx.send(embed=embed3)
             except Exception as r:
                 print(r)
