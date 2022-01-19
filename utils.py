@@ -12,7 +12,7 @@ embedinformation=disnake.Embed(title="Информация о боте", color=0
 embedinformation.set_thumbnail(url="https://media.discordapp.net/attachments/896109675873984543/903350823365537802/0fd5e79f1cd36c4045b9b822faae409c4d64b66c.png")
 embedinformation.add_field(name="Бот написан на:", value="Python3", inline=True)
 embedinformation.add_field(name="Версия бота:", value="0.65.5 Alpha", inline=True)
-embedinformation.add_field(name='Разработчики:', value='<@!495905651365642250>\nФантик#1111', inline=True)
+embedinformation.add_field(name='Разработчики:', value='ViZus#9667\nФантик#6765\narudo#7046', inline=True)
 embedinformation.add_field(name='Библиотека бота:', value='disnake', inline=True)
 # ------------------------------- 
 class Utilits(commands.Cog):
