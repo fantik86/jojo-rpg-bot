@@ -20,7 +20,7 @@ cooogs = {
     'events',
     'other'
 }
-def get_prefix(message, bot):
+async def get_prefix(bot, message):
     return prefixes.get(message.guild_id)
 # -------------------------------
 config = configparser.ConfigParser()
