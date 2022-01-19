@@ -1,5 +1,6 @@
 aeval==0.1.3
 aiohttp==3.7.4
+asyncio
 alabaster==0.7.12
 altgraph==0.17
 animation==0.0.7
