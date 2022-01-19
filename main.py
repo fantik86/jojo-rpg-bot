@@ -6,6 +6,7 @@ import os
 import time
 import asyncio
 import random
+from prefix_cache import prefixes
 # --------------------------------
 from disnake.ext import commands, tasks
 
@@ -19,12 +20,14 @@ cooogs = {
     'events',
     'other'
 }
+def get_prefix(message, bot):
+    return prefixes.get(message.guild.id)
 # -------------------------------
 config = configparser.ConfigParser()
 config.read("config.ini")
 token = config.get("Config", "Token")
 developers = json.loads(config.get("Config", "Developers"))
-bot = commands.Bot(command_prefix="$", 
+bot = commands.Bot(command_prefix=get_prefix, 
                 intents = disnake.Intents.all(),
                 case_insensitive=True,
                 status=disnake.Status.online, 
