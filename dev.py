@@ -25,10 +25,10 @@ class Devs(commands.Cog):
                 print(eeeeee)
             if not collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) == 0:
                 try:
-                    if collection_name_UserData.find_one({"_id": ctx.author.id})["explore_level"] == 1.70:
+                    if collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["explore_level"] == 1.70:
                         return await ctx.send("Вы уже изучили все места, вы больше не можете использовать данную команду.")
                     else:
-                        user_lvl = collection_name_UserData.find_one({"_id": ctx.author.id})["explore_level"]
+                        user_lvl = collection_name_UserData.find_one({"_id": f"{ctx.author.id}"})["explore_level"]
                         if int(rnd.randint(1, 50)) in [rnd.randint(1, 50) for _ in range(int(10-user_lvl))]:
                             await ctx.send(embed=disnake.Embed(title=f"Изучение места: {explore_levels[user_lvl]}", description="Вы удачно изучили данное место, вас множитель денег в команда `stand_adventure` умножен на 0.05!"))
                             collection_name_UserData.update_one({"_id": f"{ctx.author.id}"}, {"$inc": {"explore_level": 0.05}})
