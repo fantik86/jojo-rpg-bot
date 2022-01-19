@@ -29,7 +29,7 @@ class Utilits(commands.Cog):
             await channel.send(embed=disnake.Embed(title='Вызвана команда: "ping"', description=f"`ID Автора`: {ctx.author.id}\n`Ник Автора`: {ctx.author}\n`ID Сервера`: {ctx.guild.id}\n`Название Сервера`: {ctx.guild}"))
         except Exception as rrrrr:
             print(rrrrr)
-    @commands.command()
+    @commands.command(aliases=["info"])
     @commands.cooldown(1, 4, commands.BucketType.user)
     async def information(self, ctx):
         await ctx.send(embed=embedinformation)
