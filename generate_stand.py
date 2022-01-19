@@ -4,7 +4,7 @@ import random as rnd
 from stand_list import stands_lst
 from main import collection_name_UserData
 from main import developers
-import asyncio as time
+import asyncio
 # -------------------------------
 def gett():
     numb = [str(rnd.randint(1, 102)) for _ in range(50)]
@@ -27,9 +27,9 @@ class Stando(commands.Cog):
             pass
         if collection_name_UserData.count_documents({"_id": f"{ctx.author.id}"}) == 0:
             messageg = await ctx.send(embed=disnake.Embed(title="Использование стрелы", description="Вы берёте стрелу в руку, и протыкаете ею себя, вы чувствуете странное чувство...", color=0xffff00))
-            time.sleep(26)
+            await asyncio.sleep(6)
             await messageg.edit(embed=disnake.Embed(title="Использование стрелы", description=f'Ваш стенд это...', color=0xffff00))
-            time.sleep(22)
+            await asyncio.sleep(2)
             stand = gett()
             await messageg.edit(embed=disnake.Embed(title="Получение стенда", description=f'Вы получили стенд **{stands_lst[stand]}**!', color=0xffff00))
             collection_name_UserData.insert_one({"_id": f'{ctx.author.id}', "nickname": f'{ctx.author}', "stands": [], "arrows": 0, "money": 0, "explore_level": 1.00, "achievements": [], "discs": 0})
@@ -51,9 +51,9 @@ class Stando(commands.Cog):
             not len(collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["stands"]) == 3 and
             collection_name_UserData.find_one({"_id": f'{ctx.author.id}'})["arrows"] > 0):
             messageg = await ctx.send(embed=disnake.Embed(title="Использование стрелы", description="Вы берёте стрелу в руку, и протыкаете ею себя, вы чувствуете странное чувство...", color=0xffff00))
-            time.sleep(26)
+            await asyncio.sleep(6)
             await messageg.edit(embed=disnake.Embed(title="Использование стрелы", description=f'Ваш стенд это...', color=0xffff00))
-            time.sleep(22)
+            await asyncio.sleep(2)
             stand = gett()
             await messageg.edit(embed=disnake.Embed(title="Получение стенда", description=f'Вы получили стенд **{stands_lst[stand]}**!', color=0xffff00))
             collection_name_UserData.update_one({"_id": f'{ctx.author.id}'}, {"$push": {"stands":f"{stand}"}})
