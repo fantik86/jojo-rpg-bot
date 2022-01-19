@@ -107,7 +107,7 @@ class Devs(commands.Cog):
             await ctx.message.delete()
             await ctx.send(arg)
         else:
-            await ctx.send("Вы не разработчик! ")
+            await ctx.send("Вы не разработчик!")
 # -------------------------------
 def setup(bot):
     bot.add_cog(Devs(bot))
