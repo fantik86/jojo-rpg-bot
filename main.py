@@ -6,7 +6,6 @@ import os
 import time
 import asyncio
 import random
-from prefix_cache import prefixes
 # --------------------------------
 from disnake.ext import commands, tasks
 
@@ -20,8 +19,6 @@ cooogs = {
     'events',
     'other'
 }
-def get_prefix(message, bot):
-    return prefixes.get(message.guild.id) or "$"
 # -------------------------------
 config = configparser.ConfigParser()
 config.read("config.ini")
