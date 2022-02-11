@@ -14,6 +14,7 @@ embedinformation.add_field(name="Бот написан на:", value="Python3", 
 embedinformation.add_field(name="Версия бота:", value="0.65.5 Alpha", inline=True)
 embedinformation.add_field(name='Разработчики:', value='ViZus#9667\nФантик#6765\narudo#7046', inline=True)
 embedinformation.add_field(name='Библиотека бота:', value='disnake', inline=True)
+embedinformation.add_field(name="Дата начала разработки", value="08/10/2021", inline=True)
 # ------------------------------- 
 class Utilits(commands.Cog):
 
