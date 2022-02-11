@@ -19,15 +19,7 @@ class Userinfoo(commands.Cog):
         if arg is None:
             userr = ctx.author
         """
-        # Если айди автора в разработчиках и аргумент не написан
-        if ctx.author.id in developers and arg is None:
-            embed0=disnake.Embed(title="?????", color=0x800080)
-            try:
-                embed0.set_image(url="https://thumbs.gfycat.com/AngryHelplessBluet-max-1mb.gif")
-            except Exception as tt:
-                print(tt)
-            return await ctx.send(embed=embed0)
-        elif ctx.author.id not in developers and arg is not None and arg.id in developers and arg:
+        if ctx.author.id not in developers and arg is not None and arg.id in developers and arg:
             embed0=disnake.Embed(title="?????", color=0x800080)
             try:
                 embed0.set_image(url="https://thumbs.gfycat.com/AngryHelplessBluet-max-1mb.gif")
